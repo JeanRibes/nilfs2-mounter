@@ -11,14 +11,13 @@ import (
 )
 
 func main() {
-	fmt.Printf("%#v\n", os.Args[1:])
-	fmt.Println("vim-go")
+	fmt.Printf("%#v\n", os.Args)
 
 	var cmd *exec.Cmd
-	if os.Args[0] == "mount" {
-		checkpoint := os.Args[1]
-		device := os.Args[2]
-		path := os.Args[3]
+	if os.Args[1] == "mount" {
+		checkpoint := os.Args[2]
+		device := os.Args[3]
+		path := os.Args[4]
 
 		cp, err := strconv.ParseInt(checkpoint, 10, 64)
 		if err != nil {
@@ -28,10 +27,10 @@ func main() {
 			log.Fatal(err)
 		}
 
-		cmd = exec.Command("mount", "-t", "nilfs1", "-o", fmt.Sprintf("noatime,users,discard,nogc,ro,cp=%d", cp), device, path)
+		cmd = exec.Command("mount", "-t", "nilfs2", "-o", fmt.Sprintf("noatime,users,discard,nogc,ro,cp=%d", cp), device, path)
 	} else {
 
-		path := os.Args[1]
+		path := os.Args[2]
 		cmd = exec.Command("umount", "-t", "nilfs2", path)
 	}
 	out, _ := cmd.StdoutPipe()

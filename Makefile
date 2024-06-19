@@ -1,13 +1,10 @@
-all: mount umount
-	sudo chown root:jean mount umount
-	sudo chmod 6750 mount umount
+all: nmount
+	sudo chown root:jean nmount
+	sudo chmod 6750 nmount
 
-main: main.go
+nmount: main.go
 	go build main.go
-mount: main
-	cp main mount	
-umount: main
-	mv main umount
+	mv main nmount
 
 clean:
-	rm -f mount umount main
+	rm -f main nmount
