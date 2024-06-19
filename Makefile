@@ -1,4 +1,4 @@
-all: nmount
+all: clean nmount
 	sudo chown root:jean nmount
 	sudo chmod 6750 nmount
 
@@ -7,4 +7,4 @@ nmount: main.go
 	mv main nmount
 
 clean:
-	rm -f main nmount
+	rm -f main nmount nilfs-mounter

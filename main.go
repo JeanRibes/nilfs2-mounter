@@ -2,18 +2,18 @@ package main
 
 import (
 	"fmt"
-	"io"
 	"log"
 	"os"
-	"os/exec"
 	"strconv"
-	"syscall"
+
+	//"golang.org/x/sys/unix"
+	unix "syscall"
 )
 
 func main() {
-	fmt.Printf("%#v\n", os.Args)
-
-	var cmd *exec.Cmd
+	/*if err := syscall.Setuid(0); err != nil {
+		log.Fatal(err)
+	}*/
 	if os.Args[1] == "mount" {
 		checkpoint := os.Args[2]
 		device := os.Args[3]
@@ -23,21 +23,14 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		if err := syscall.Setuid(0); err != nil {
+
+		//if err := mount.Mount(device, path, "nilfs2", fmt.Sprintf("noatime,discard,ro,cp=%d", cp)); err != nil {
+		if err := unix.Mount(device, path, "nilfs2", unix.MS_RDONLY|unix.MS_NOATIME, fmt.Sprintf("discard,cp=%d", cp)); err != nil {
 			log.Fatal(err)
 		}
-
-		cmd = exec.Command("mount", "-t", "nilfs2", "-o", fmt.Sprintf("noatime,users,discard,nogc,ro,cp=%d", cp), device, path)
 	} else {
 
 		path := os.Args[2]
-		cmd = exec.Command("umount", "-t", "nilfs2", path)
-	}
-	out, _ := cmd.StdoutPipe()
-	oerr, _ := cmd.StderrPipe()
-	go io.Copy(os.Stdout, out)
-	go io.Copy(os.Stdout, oerr)
-	if err := cmd.Run(); err != nil {
-		log.Fatal(err)
+		unix.Unmount(path, unix.MNT_DETACH)
 	}
 }
