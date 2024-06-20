@@ -25,21 +25,21 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			if err := unix.Mount(device, path, "nilfs2", unix.MS_RDONLY|unix.MS_NOATIME, fmt.Sprintf("discard,cp=%d", cp)); err != nil {
+			if err := unix.Mount(device, path, "nilfs2", unix.MS_RDONLY|unix.MS_NOATIME|unix.MS_ASYNC, fmt.Sprintf("discard,cp=%d", cp)); err != nil {
 				log.Fatal(err)
 			}
 		} else {
-			if err := unix.Mount(device, path, "nilfs2", unix.MS_NOATIME, "discard"); err != nil {
+			if err := unix.Mount(device, path, "nilfs2", unix.MS_NOATIME|unix.MS_ASYNC, "discard"); err != nil {
 				log.Fatal(err)
 			}
 		}
 
 	} else {
-
-		path := os.Args[2]
-		var err error = nil
-		for err == nil {
-			err = unix.Unmount(path, unix.MNT_DETACH)
+		for _, path := range os.Args[2:] {
+			log.Println("unmount", path)
+			if err := unix.Unmount(path, unix.MNT_DETACH); err != nil {
+				log.Print(err)
+			}
 		}
 	}
 }
