@@ -8,7 +8,8 @@ install: nilfs2-mounter
 	sudo mv nilfs2-mounter /usr/local/bin/nilfs2-mounter
 	sudo setcap cap_sys_admin=ep /usr/local/bin/nilfs2-mounter
 	sudo cp nilfs2.sh /usr/local/bin/nilfs2.sh
-	sudo cp .applications/* /usr/local/share/applications
+	chmod 755 .applications/*.desktop
+	sudo cp .applications/*.desktop /usr/local/share/applications
 clean:
 	rm -f main nilfs2-mounter
 
