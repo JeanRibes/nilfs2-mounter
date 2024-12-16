@@ -14,3 +14,8 @@ The shortcuts allow for a easy usage: make a snaphot, select and mount one (requ
 nilfs.sh choose-mount-snapshot # select and mount one with fzf
 nilfs.sh umount-snapshots # unmounts all snapshots
 ```
+
+## Caveats
+
+Currently this setup supports only one NILFS2 device.
+The scripts auto-detects-its using mounts, but it can be set with env var `NILFS2_MOUNTER_DEVICE`
