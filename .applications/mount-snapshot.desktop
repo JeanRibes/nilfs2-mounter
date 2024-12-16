@@ -1,6 +1,6 @@
 #!/usr/bin/env xdg-open
 [Desktop Entry]
-Exec=/usr/local/bin/nilfs2.sh choose-mount-snapshot
+Exec=/usr/bin/nilfs2.sh choose-mount-snapshot
 GenericName[fr_FR]=choisir et monter un Instantané NILFS2
 GenericName=choose and open NILFS2 snapshot
 Icon=document-open-symbolic

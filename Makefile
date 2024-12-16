@@ -12,6 +12,7 @@ install: nilfs2-mounter
 	sudo cp .applications/*.desktop /usr/local/share/applications
 clean:
 	rm -f main nilfs2-mounter
+	rm -fr nilfs2-mounter-1.0
 
 uninstall:
 	rm /usr/local/bin/nilfs2-mounter
@@ -19,3 +20,7 @@ uninstall:
 	rm /usr/local/share/applications/create-snapshot.desktop
 	rm /usr/local/share/applications/mount-snapshot.desktop
 	rm /usr/local/share/applications/unmount-snapshots.desktop
+tar:
+	git archive --output=${HOME}/rpmbuild/SOURCES/nilfs2-mounter-1.0.tar.gz --prefix=nilfs2-mounter-1.0/ HEAD
+rpm: tar
+	rpmbuild -bb nilfs2-mounter.spec
