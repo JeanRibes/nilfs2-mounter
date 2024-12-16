@@ -1,5 +1,5 @@
 [Desktop Entry]
-Exec=/usr/local/bin/nilfs.sh umount-snapshots
+Exec=/usr/local/bin/nilfs2.sh umount-snapshots
 GenericName[fr_FR]=démonter tous les instantanés NILFS2
 GenericName=Umount all NILFS2 snapshots
 Icon=media-eject-symbolic

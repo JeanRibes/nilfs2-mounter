@@ -1,20 +1,20 @@
-all: setup clean nilfs-mounter install
+all: setup clean nilfs2-mounter install
 
 setup:
 	sudo chmod u+s /usr/bin/mkcp
-nilfs-mounter: main.go
+nilfs2-mounter: main.go
 	go build
-install: nilfs-mounter
-	sudo mv nilfs-mounter /usr/local/bin/nilfs-mounter
-	sudo setcap cap_sys_admin=ep /usr/local/bin/nilfs-mounter
-	sudo cp nilfs.sh /usr/local/bin/nilfs.sh
+install: nilfs2-mounter
+	sudo mv nilfs2-mounter /usr/local/bin/nilfs2-mounter
+	sudo setcap cap_sys_admin=ep /usr/local/bin/nilfs2-mounter
+	sudo cp nilfs2.sh /usr/local/bin/nilfs2.sh
 	sudo cp .applications/* /usr/local/share/applications
 clean:
-	rm -f main nilfs-mounter
+	rm -f main nilfs2-mounter
 
 uninstall:
-	rm /usr/local/bin/nilfs-mounter
-	rm /usr/local/bin/nilfs.sh
+	rm /usr/local/bin/nilfs2-mounter
+	rm /usr/local/bin/nilfs2.sh
 	rm /usr/local/share/applications/create-snapshot.desktop
 	rm /usr/local/share/applications/mount-snapshot.desktop
 	rm /usr/local/share/applications/unmount-snapshots.desktop

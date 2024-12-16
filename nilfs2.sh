@@ -9,14 +9,14 @@ function mount_snapshot() {
         snapshot=$(echo $choice|cut -d' ' -f1)
         echo "mount $snapshot"
         mkdir -p "$TARGET/snapshots/$snapshot"
-        nilfs-mounter mount "$DEVICE" "$TARGET/snapshots/$snapshot" "$snapshot"
+        nilfs2-mounter mount "$DEVICE" "$TARGET/snapshots/$snapshot" "$snapshot"
     fi
 }
 
 function unmount_snapshots() {
     shopt -s extglob
     for i in "$TARGET/snapshots/"*; do
-        nilfs-mounter umount "$i"
+        nilfs2-mounter umount "$i"
         rmdir "$i"
     done
 }
