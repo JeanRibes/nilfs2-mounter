@@ -1,0 +1,13 @@
+[Desktop Entry]
+Exec=/usr/local/bin/nilfs.sh umount-snapshots
+GenericName[fr_FR]=démonter tous les instantanés NILFS2
+GenericName=Umount all NILFS2 snapshots
+Icon=media-eject-symbolic
+MimeType=
+Name[fr_FR]=Démonter snapshots
+Name=Unmount snapshots
+StartupNotify=true
+Terminal=false
+Type=Application
+X-KDE-SubstituteUID=false
+X-KDE-Username=

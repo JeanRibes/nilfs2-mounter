@@ -1,0 +1,13 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Exec=/usr/local/bin/nilfs.sh choose-mount-snapshot
+GenericName[fr_FR]=choisir et monter un Instantané NILFS2
+GenericName=choose and open NILFS2 snapshot
+Icon=document-open-symbolic
+MimeType=
+Name[fr_FR]=Monter Instantané
+Name=Mount snapshot
+StartupNotify=true
+Terminal=true
+Type=Application
+X-KDE-SubstituteUID=false

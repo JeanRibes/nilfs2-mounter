@@ -1,6 +1,6 @@
 #!/bin/bash
-DEVICE="/dev/disk/by-label/documents" # /dev/mapper/luks-b3f31029-4b02-4b4a-9106-253155f4ac2f
-TARGET="/run/user/$UID/documents"
+DEVICE="/dev/disk/by-label/idoc" # /dev/mapper/luks-b3f31029-4b02-4b4a-9106-253155f4ac2f
+TARGET="$XDG_RUNTIME_DIR/documents"
 mkdir -p "$TARGET"
 
 function mount_snapshot() {
@@ -9,14 +9,14 @@ function mount_snapshot() {
         snapshot=$(echo $choice|cut -d' ' -f1)
         echo "mount $snapshot"
         mkdir -p "$TARGET/snapshots/$snapshot"
-        nmount mount "$DEVICE" "$TARGET/snapshots/$snapshot" "$snapshot"
+        nilfs-mounter mount "$DEVICE" "$TARGET/snapshots/$snapshot" "$snapshot"
     fi
 }
 
 function unmount_snapshots() {
     shopt -s extglob
     for i in "$TARGET/snapshots/"*; do
-        nmount umount "$i"
+        nilfs-mounter umount "$i"
         rmdir "$i"
     done
 }
