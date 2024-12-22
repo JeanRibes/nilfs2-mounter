@@ -31,8 +31,8 @@ Mount NILFS2 snapshots without sudo.}
 %global godocs          README.md
 
 Name:           nilfs2-mounter
-Version:        0
-Release:        %autorelease -p
+Version:        %(git describe --tags --exact-match --dirty|grep -v dirty|grep v||git rev-parse HEAD)
+Release:        %(git rev-parse --short HEAD)
 Summary:        Mount NILFS2 snapshots without sudo
 
 License:        # FIXME
