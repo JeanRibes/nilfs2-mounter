@@ -35,7 +35,7 @@ Version:        %(git describe --tags --exact-match --dirty|grep -v dirty|grep v
 Release:        %(git rev-parse --short HEAD)
 Summary:        Mount NILFS2 snapshots without sudo
 
-License:        # FIXME
+License:        GPL-3.0-only
 URL:            %{gourl}
 Source:         %{name}-%{commit}.tar.gz
 # %{gosource}
