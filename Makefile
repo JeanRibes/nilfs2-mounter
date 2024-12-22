@@ -11,16 +11,15 @@ install: nilfs2-mounter
 	chmod 755 .applications/*.desktop
 	sudo cp .applications/*.desktop /usr/share/applications
 clean:
-	rm -f main nilfs2-mounter
-	rm -fr nilfs2-mounter-1.0
-
+	git clean -fX .
 uninstall:
 	rm /usr/bin/nilfs2-mounter
 	rm /usr/bin/nilfs2.sh
 	rm /usr/share/applications/create-snapshot.desktop
 	rm /usr/share/applications/mount-snapshot.desktop
 	rm /usr/share/applications/unmount-snapshots.desktop
-tar:
-	git archive --output=${HOME}/rpmbuild/SOURCES/nilfs2-mounter-1.0.tar.gz --prefix=nilfs2-mounter-1.0/ HEAD
-rpm: tar
-	rpmbuild -bb nilfs2-mounter.spec
+
+fedpkg:
+	rpmdev-setuptree
+	git archive --output=./nilfs2-mounter-`git rev-parse HEAD`.tar.gz --prefix=nilfs2-mounter-`git rev-parse HEAD`/ HEAD
+	fedpkg local

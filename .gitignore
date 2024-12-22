@@ -1,1 +1,5 @@
 nmount
+.build-*.log
+*.tar.gz
+*.rpm
+*.swp
