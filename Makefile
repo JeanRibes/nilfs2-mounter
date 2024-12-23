@@ -22,4 +22,15 @@ uninstall:
 rpm:
 	rpmdev-setuptree
 	git archive --output=./nilfs2-mounter-`git rev-parse HEAD`.tar.gz --prefix=nilfs2-mounter-`git rev-parse HEAD`/ HEAD
+	mv nilfs2-mounter-`git rev-parse HEAD`.tar.gz ~/rpmbuild/SOURCES
+	rpmbuild -ba main.spec
+	@echo ========================
+	@echo check ~/rpmbuild/RPMS
+	@echo
+	ls ~/rpmbuild/RPMS/*
+
+dev-fedora:
+	rpmdev-setuptree
+	git archive --output=./nilfs2-mounter-`git rev-parse HEAD`.tar.gz --prefix=nilfs2-mounter-`git rev-parse HEAD`/ HEAD
 	fedpkg local
+	sudo dnf install --allow-downgrade ./x86_64/nilfs2-mounter-`git rev-parse HEAD`-`git rev-parse --short HEAD`.x86_64.rpm
