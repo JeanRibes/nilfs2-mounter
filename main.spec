@@ -43,6 +43,8 @@ Source:         %{name}-%{commit}.tar.gz
 Requires:	nilfs-utils
 Requires:	bash
 
+BuildRequires:	nilfs-utils-devel
+
 %description %{common_description}
 
 %gopkg

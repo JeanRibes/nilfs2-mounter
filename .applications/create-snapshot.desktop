@@ -1,7 +1,7 @@
 [Desktop Entry]
-Exec=/usr/bin/mkcp --snapshot
-GenericName[fr_FR]=crée un instantané NILFS2 avec «mkcp»
-GenericName=Create a NILFS snapshot using mkcp
+Exec=/usr/bin/nilfs2.sh snapshot
+GenericName[fr_FR]=crée un instantané NILFS2
+GenericName=Create a NILFS snapshot
 Icon=document-save-symbolic
 MimeType=
 Name[fr_FR]=Snapshot

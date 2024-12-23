@@ -28,13 +28,16 @@ function unmount_snapshots() {
 
 case $1 in
     choose-mount-snapshot)
-    mount_snapshot
-    ;;
+			mount_snapshot
+			;;
     umount-snapshots)
-    unmount_snapshots
-    ;;
+			unmount_snapshots
+			;;
+		snapshot|mkcp)
+			nilfs2-mounter snapshot "$NILFS2_MOUNTER_DEVICE"
+			;;
     *)
-    echo "Usage: $0 <choose-mount-snapshot|umount-snapshots>"
+    echo "Usage: $0 <choose-mount-snapshot|umount-snapshots|snapshot>"
 		exit 2
     ;;
 esac
