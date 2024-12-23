@@ -19,7 +19,7 @@ uninstall:
 	rm /usr/share/applications/mount-snapshot.desktop
 	rm /usr/share/applications/unmount-snapshots.desktop
 
-fedpkg:
+rpm:
 	rpmdev-setuptree
 	git archive --output=./nilfs2-mounter-`git rev-parse HEAD`.tar.gz --prefix=nilfs2-mounter-`git rev-parse HEAD`/ HEAD
 	fedpkg local

@@ -3,3 +3,4 @@ nmount
 *.tar.gz
 *.rpm
 *.swp
+nilfs2-mounter
