@@ -28,6 +28,7 @@ rpm:
 	@echo check ~/rpmbuild/RPMS
 	@echo
 	ls ~/rpmbuild/RPMS/*
+	ln -s ~/rpmbuild/RPMS/x86_64/nilfs2-mounter-`git describe --tags --exact-match --dirty|grep -v dirty|grep v||git rev-parse HEAD`-`git rev-parse --short HEAD`.x86_64.rpm .
 
 dev-fedora:
 	rpmdev-setuptree

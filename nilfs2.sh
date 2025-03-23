@@ -15,6 +15,7 @@ function mount_snapshot() {
         echo "mount $snapshot"
         mkdir -p "$TARGET/snapshots/$snapshot"
         nilfs2-mounter mount "$NILFS2_MOUNTER_DEVICE" "$TARGET/snapshots/$snapshot" "$snapshot"
+        xdg-open "$TARGET/snapshots/$snapshot"
     fi
 }
 

@@ -23,7 +23,7 @@
 # you'll need to coordinate the removal of the package's dependents first.
 # ---
 # REMOVE BEFORE SUBMITTING THIS FOR REVIEW
-%gometa -L -f
+%gometa -f
 
 %global common_description %{expand:
 Mount NILFS2 snapshots without sudo.}
@@ -42,6 +42,7 @@ Source:         %{name}-%{commit}.tar.gz
 
 Requires:	nilfs-utils
 Requires:	bash
+Requires:	fzf
 
 BuildRequires:	nilfs-utils-devel
 
